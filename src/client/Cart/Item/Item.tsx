@@ -32,7 +32,7 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
           setDialogOpen(false);
         }}
       />
-      <Wrapper onClick={handleItemClick}>
+      <Wrapper onClick={handleItemClick} data-cy={`item-card-${item.id}`}>
         <img src={item.image} alt={item.title} />
         <div>
           <h3>{item.title}</h3>

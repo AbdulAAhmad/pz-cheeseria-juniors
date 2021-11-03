@@ -63,6 +63,7 @@ const Cart: React.FC<Props> = ({
         onClick={() => {
           mutate(cartItems);
         }}
+        data-cy="purchase-button"
       >
         Purchase
       </Button>
