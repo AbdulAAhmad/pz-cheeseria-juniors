@@ -25,7 +25,7 @@ const RecentPurchases: React.FC<Props> = () => {
   return (
     <RecentPurchasesContainer>
       <h2>Recent Purchases</h2>
-      {data ? (
+      {data && data.length > 0 ? (
         data.map((item) => (
           <RecentItem key={item.id}>
             <img src={item.image} alt={item.title} />

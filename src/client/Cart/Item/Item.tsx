@@ -14,6 +14,12 @@ type Props = {
 
 const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const handleItemClick = (e: any) => {
+    if (e.target.className === "MuiButton-label") {
+      return;
+    }
+    setDialogOpen(true);
+  };
 
   return (
     <div>
@@ -26,7 +32,7 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
           setDialogOpen(false);
         }}
       />
-      <Wrapper onClick={() => setDialogOpen(true)}>
+      <Wrapper onClick={handleItemClick}>
         <img src={item.image} alt={item.title} />
         <div>
           <h3>{item.title}</h3>
