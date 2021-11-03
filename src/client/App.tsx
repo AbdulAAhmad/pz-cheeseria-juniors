@@ -129,7 +129,6 @@ const App = () => {
         onClose={() => setRecentPurchasesOpen(false)}
       >
         <RecentPurchases />
-        {/* <h2>jdjdjndnj</h2> */}
       </Drawer>
 
       <Grid container spacing={3}>
