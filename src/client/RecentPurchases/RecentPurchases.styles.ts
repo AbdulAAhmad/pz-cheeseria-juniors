@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 export const RecentItem = styled.div`
     display: grid;
-    height: 200px;
     width:400px;
     margin-bottom: 10px;
     align-items: end;
-    /* grid-template-rows: 75% 25%; */
   
     img {
         grid-column: 1/-1;
