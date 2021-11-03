@@ -1,8 +1,9 @@
 import * as express from 'express';
+import type { CheeseType } from './data/cheeses';
 const { randomBytes } = require("crypto");
-const cheeses = require('./data/cheeses.json');
+const cheeses : CheeseType = require('./data/cheeses.json');
 const orders = require('./orders');
-const recentItems = require('./recentItems');
+const {addItemToRecentItems, getRecentItems} = require('./recentItems');
 
 const router = express.Router();
 
@@ -14,9 +15,7 @@ router.get('/api/cheeses', (req, res, next) => {
 
 router.get('/api/orders/recent', (req, res, next) => {
 
-    res.send(recentItems.map((itemId: number) => 
-        cheeses.find((cheese: { id: number; }) => itemId === cheese.id)
-    ));
+    res.send(getRecentItems(cheeses));
 });
 
 router.post('/api/orders', (req, res, next)=> {
@@ -24,15 +23,7 @@ router.post('/api/orders', (req, res, next)=> {
     const orderItems : OrderItemsType[] = req.body;
 
     orderItems.forEach((orderItem)=> {
-        const itemIndex = recentItems.indexOf(orderItem.id);
-        if(itemIndex === -1){
-            recentItems.unshift(orderItem.id)
-        }
-        else{
-            recentItems.splice(itemIndex,1)
-            recentItems.unshift(orderItem.id)
-
-        }
+        addItemToRecentItems(orderItem.id)
     })
 
     orders[id] = {id, items: orderItems}
