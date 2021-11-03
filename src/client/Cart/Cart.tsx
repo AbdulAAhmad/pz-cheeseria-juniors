@@ -36,13 +36,9 @@ const Cart: React.FC<Props> = ({
     return res;
   };
 
-  const { mutate, isLoading, isSuccess } = useMutation(createOrder);
-
-  useEffect(() => {
-    if (isSuccess) {
-      clearCart();
-    }
-  }, [isSuccess]);
+  const { mutate, isLoading } = useMutation(createOrder, {
+    onSuccess: () => clearCart(),
+  });
 
   return (
     <Wrapper>
